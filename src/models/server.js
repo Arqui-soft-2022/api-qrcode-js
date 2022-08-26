@@ -12,11 +12,20 @@ class Server {
             auth: '/api/auth',
             code: '/api/code'
         }
+
+        this.middlewares();
+
+        this.routes();
     }
 
     middlewares(){
         this.app.use(cors());
         this.app.use(express.json());
+    }
+
+    routes(){
+        this.app.use(this.paths.auth, require('../routes/auth.routes'))
+        this.app.use(this.paths.code, require('../routes/code.routes'))
     }
 
     listen(){
