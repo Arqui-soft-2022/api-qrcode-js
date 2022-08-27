@@ -4,8 +4,8 @@
   "description": "Api para generar codigos qr de una imagen",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon app",
-    "start": "cross-env NODE_ENV=production node app.js"
+    "start": "cross-env NODE_ENV=production node app",
+    "dev": "cross-env NODE_ENV=development nodemon app"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-validator": "^6.14.2",
