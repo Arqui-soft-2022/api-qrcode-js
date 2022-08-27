@@ -52,6 +52,22 @@ const retornarImg = async(req, res= response) =>{
     
 }
 
+const historico = async( req, res = response)=>{
+
+    try {
+        const codes = await pool.query('SELECT * FROM qr_code');
+
+        res.status(200).json({
+            msg: 'Historial de consultas',
+            codes
+        })
+    } catch (error) {
+        
+    }
+    
+}
+
 module.exports = {
-    retornarImg
+    retornarImg,
+    historico
 }
