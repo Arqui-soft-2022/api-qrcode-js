@@ -1,14 +1,21 @@
 const { response } = require("express");
 const pool = require('../database/conexion')
-const qrcode = require('qrcode')
+const qrcode = require('qrcode');
+const { contentType, verificarType } = require("../helpers/validarType");
 
 
 const retornarImg = async(req, res= response) =>{
     
-    const { url, user, type } = req.body;
+    const { url, user } = req.body;
     const url_code = await qrcode.toDataURL(url);
-
+    
+    let type = 0;
     const date = new Date();
+
+    const content = await contentType(url);
+    
+    type = await verificarType(url, content)
+    console.log(type)
 
     const qr_code ={
         url,
@@ -18,7 +25,7 @@ const retornarImg = async(req, res= response) =>{
         date
     }
 
-    try {
+     try {
         
         await pool.query('INSERT INTO qr_code SET ?', qr_code);
 
@@ -32,7 +39,7 @@ const retornarImg = async(req, res= response) =>{
         return res.status(500).json({
             msg: 'Algo salió mal'
         })
-    }
+    } 
     
 }
 

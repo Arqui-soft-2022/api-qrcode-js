@@ -51,7 +51,6 @@ const register = async( req, res = response) =>{
         name
     } = req.body;
 
-    console.log(password)
 
     const salt = bcrypt.genSaltSync();
     password = bcrypt.hashSync(password, salt);
