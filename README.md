@@ -19,7 +19,7 @@
 ### Registrar
 
 - Peticion: POST 
-- Url: https://www.algo.com/api/auth/register
+- Url: https://codeqr-generate.herokuapp.com/api/auth/register
 - Body: 
 
 ```json
@@ -45,7 +45,7 @@
 ### Login
 
 - Peticion: POST 
-- Url: https://www.algo.com/api/auth/login
+- Url: https://codeqr-generate.herokuapp.com/api/auth/login
 - Body: 
 ```json
     {
@@ -70,7 +70,7 @@
 ### Generar QR
 
 - Peticion: POST 
-- Url: https://www.algo.com/api/code/
+- Url: https://codeqr-generate.herokuapp.com/api/code/
 - Body: 
 ```json
     {
@@ -96,7 +96,7 @@
 ### Consultar historial
 
 - Peticion: GET 
-- Url: https://www.algo.com/api/code/
+- Url: https://codeqr-generate.herokuapp.com/api/code/
 - Respuesta: 
 ```json
 {
