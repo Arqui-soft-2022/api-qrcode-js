@@ -26,6 +26,7 @@ class Server {
     routes(){
         this.app.use(this.paths.auth, require('../routes/auth.routes'))
         this.app.use(this.paths.code, require('../routes/code.routes'))
+        this.app.use('/', require('../routes/index.routes'));
     }
 
     listen(){
