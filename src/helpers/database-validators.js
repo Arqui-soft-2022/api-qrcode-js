@@ -1,15 +1,45 @@
 const pool = require('../database/conexion');
 
 
-const existeUsuario = async (id) => {
+const existeUsuario = async (user) => {
 
-    let usuarioId = await pool.query('SELECT id_usuario FROM usuario WHERE id_usuario = ?', [id]);
+    let usuario = await pool.query('SELECT * FROM usuario WHERE id_usuario = ?', [user]);
 
-    if (usuarioId.length < 0) {
+    if (usuario.length == 0) {
         throw new Error('El usuario no existe');
     }
 }
 
+const existeUsuarioByUsername = async (username) => {
+
+    let usuario = await pool.query('SELECT * FROM usuario WHERE username = ?', [username]);
+
+    if (usuario.length == 0) {
+        throw new Error('El usuario no existe');
+    }
+}
+
+const noExisteUsuarioByUsername = async (username) => {
+
+    let usuario = await pool.query('SELECT * FROM usuario WHERE username = ?', [username]);
+
+    if (usuario.length > 0) {
+        throw new Error('El usuario ya existe');
+    }
+}
+
+const noExisteUsuarioByEmail = async (email) => {
+
+    let usuario = await pool.query('SELECT * FROM usuario WHERE email = ?', [email]);
+    
+    if (usuario.length > 0) {
+        throw new Error('El usuario ya existe');
+    }
+}
+
 module.exports = {
-    existeUsuario
+    existeUsuario,
+    existeUsuarioByUsername,
+    noExisteUsuarioByEmail,
+    noExisteUsuarioByUsername
 }
