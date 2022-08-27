@@ -13,10 +13,7 @@ const contentType = async (url) => {
     return content;
 }
 
-
 const verificarType = async (url, content) => {
-
-    console.log(content)
 
     let type = 0;
     const dominios = await pool.query('SELECT * FROM type');
@@ -37,8 +34,8 @@ const verificarType = async (url, content) => {
                 type = id[0];
 
                 break;
-            case 'application/pdf':
-                id = await pool.query('SELECT id_type FROM type WHERE descripcion = pdf');
+            case 'video/x-msvideo':
+                id = await pool.query('SELECT id_type FROM type WHERE descripcion = video');
                 type = id[0];
 
                 break;
@@ -50,8 +47,7 @@ const verificarType = async (url, content) => {
                 break;
 
             default:
-                id = await pool.query('SELECT id_type FROM type WHERE descripcion = desconocido');
-                type = id[0];
+                type = 5;
                 break;
         }
     }
