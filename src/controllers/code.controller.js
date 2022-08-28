@@ -54,8 +54,10 @@ const retornarImg = async(req, res= response) =>{
 
 const historico = async( req, res = response)=>{
 
+    const { user } = req.body;
+
     try {
-        const codes = await pool.query('SELECT * FROM qr_code');
+        const codes = await pool.query('SELECT * FROM qr_code WHERE user = ?', [ user ]);
 
         res.status(200).json({
             msg: 'Historial de consultas',

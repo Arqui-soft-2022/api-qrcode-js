@@ -7,7 +7,11 @@ const { existeUsuario } = require('../helpers/database-validators');
 
 const router = Router();
 
-router.get('/', historico)
+router.post('/historial', [
+    check('user', 'Debe enviar el id del usuario').not().isEmpty(),
+    check('user').custom(existeUsuario),
+    validarCampos
+] ,historico)
 
 router.post('/', [
     check('url', 'No hay url en la peticion').not().isEmpty(),

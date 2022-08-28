@@ -38,7 +38,8 @@
         "username": "prueba",
         "password": "",
         "email": "correo@hotmail.com",
-        "name": "Prueba"
+        "name": "Prueba",
+        "id_usuario": 1
     }
 }
 ```    
@@ -57,6 +58,7 @@
 ```json
 {
     "usuario": {
+        "id_usuario": 1,
         "username": "prueba",
         "password": "",
         "email": "correo@hotmail.com",
@@ -95,8 +97,14 @@
 
 ### Consultar historial
 
-- Peticion: GET 
+- Peticion: POST 
 - Url: https://codeqr-generate.herokuapp.com/api/code/
+- Body:
+```json
+    {
+        "user" : "Id del usuario"
+    }
+```
 - Respuesta: 
 ```json
 {

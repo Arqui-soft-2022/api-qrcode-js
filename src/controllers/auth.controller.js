@@ -55,7 +55,7 @@ const register = async( req, res = response) =>{
     const salt = bcrypt.genSaltSync();
     password = bcrypt.hashSync(password, salt);
 
-    const usuario = {
+    let usuario = {
         username,
         password,
         email,
@@ -64,6 +64,10 @@ const register = async( req, res = response) =>{
 
     try {
         await pool.query('INSERT INTO usuario SET ?', [ usuario ]);
+
+        const id = await pool.query('SELECT id_usuario FROM usuario WHERE username = ?', [username]);
+
+        usuario.id_usuario = id[0].id_usuario;
 
         res.json({
             msg: 'Registrado con exito',
