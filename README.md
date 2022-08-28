@@ -98,7 +98,7 @@
 ### Consultar historial
 
 - Peticion: POST 
-- Url: https://codeqr-generate.herokuapp.com/api/code/
+- Url: https://codeqr-generate.herokuapp.com/api/code/historial/
 - Body:
 ```json
     {
