@@ -26,7 +26,7 @@ const retornarImg = async(req, res= response) =>{
 
     url_code = 'data:image/png;base64,' + url_code.toString("base64");
 
-    const qr_code ={
+    let qr_code ={
         url,
         url_code,
         user,
@@ -37,6 +37,10 @@ const retornarImg = async(req, res= response) =>{
      try {
         
         await pool.query('INSERT INTO qr_code SET ?', qr_code);
+
+        
+        const descripType = await pool.query('SELECT descripcion FROM type WHERE id_type = ?', [type]);
+        qr_code.type = descripType[0].descripcion;
 
         res.json({
             msg: 'Registrado con exito',
