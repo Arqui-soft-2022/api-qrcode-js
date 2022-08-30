@@ -17,6 +17,7 @@ router.post('/register', [
     check('username', 'Debe enviar username').not().isEmpty(),
     check('password', 'Debe enviar contraseña').not().isEmpty(),
     check('email', 'Debe enviar email').not().isEmpty(),
+    check('email', 'No es un email valido').isEmail(),
     check('name', 'Debe enviar el name').not().isEmpty(),
     check('username').custom(noExisteUsuarioByUsername),
     check('email').custom(noExisteUsuarioByEmail),
