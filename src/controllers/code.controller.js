@@ -61,7 +61,12 @@ const historico = async( req, res = response)=>{
     const { user } = req.body;
 
     try {
-        const codes = await pool.query('SELECT * FROM qr_code WHERE user = ?', [ user ]);
+        let codes = await pool.query('SELECT * FROM qr_code WHERE user = ?', [ user ]);
+
+        for (const code of codes) {
+            let types = await pool.query('SELECT descripcion FROM type WHERE id_type = ?', [code.type]);
+            code.type = types[0].descripcion;
+        }
 
         res.status(200).json({
             msg: 'Historial de consultas',
