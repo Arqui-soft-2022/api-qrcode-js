@@ -18,12 +18,11 @@ const contentType = async (url) => {
         .then(function (response) {
             const { headers } = response;
             content = headers['content-type'];
-            console.log('Errorrrrrr' +content)
         })
 
         return content;
     } catch (error) {
-        //console.log(error);
+        console.log(error);
         throw new Error(error)
     }
     
