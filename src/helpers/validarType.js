@@ -4,13 +4,29 @@ const pool = require('../database/conexion');
 const contentType = async (url) => {
 
     let content;
-    await axios.get(url)
+
+    let regex = new RegExp('linkedin');
+    let resp = regex.test(url);
+
+    if(resp){
+        content = 'text/html';
+        return content;
+    }
+
+    try {
+        await axios.get(url)
         .then(function (response) {
             const { headers } = response;
             content = headers['content-type'];
+            console.log('Errorrrrrr' +content)
         })
 
-    return content;
+        return content;
+    } catch (error) {
+        //console.log(error);
+        throw new Error(error)
+    }
+    
 }
 
 const verificarType = async (url, content) => {
